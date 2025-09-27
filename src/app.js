@@ -10,7 +10,7 @@ const cors = require("cors");
 
 const app = express();
 
-let PORT = 4000;
+let PORT = 7777;
 
 const corsOptions = {
   origin: "http://localhost:5173",
