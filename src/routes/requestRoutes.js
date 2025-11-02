@@ -5,6 +5,8 @@ const User = require("../models/user");
 
 const requestRouter = express.Router();
 
+const sendEmail = require('../utils/sendEmail') 
+
 requestRouter.post(
   "/request/send/:status/:toUserId",
   userAuth,
@@ -70,6 +72,10 @@ requestRouter.post(
       });
 
       await user.save();
+
+      const sendEmailResponse = await sendEmail.run({subject:"Sent Request in devder.site", body:status === "ignored"
+            ? `${firstName} ${lastName} ignored ${toUser?.firstName} ${toUser?.lastName}`
+            : `${firstName} ${lastName} is interested in ${toUser?.firstName} ${toUser?.lastName}`})
 
       res.status(200).json({
         success: true,

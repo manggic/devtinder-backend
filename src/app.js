@@ -1,3 +1,5 @@
+
+require("dotenv").config();
 const express = require("express");
 
 const cookieParser = require("cookie-parser");
@@ -8,9 +10,10 @@ const authRouter = require("./routes/authRoutes");
 const requestRouter = require("./routes/requestRoutes");
 const cors = require("cors");
 
+
 const app = express();
 
-let PORT = 7777;
+let PORT = process.env.PORT || 7777;
 
 const corsOptions = {
   origin: "http://localhost:5173",
